@@ -20,4 +20,11 @@ public class BoardTest {
         Board board = new Board(grid);
         assertThat(board.getHeight()).isEqualTo(MAX_HEIGHT);
     }
+    
+    @Test //Square in board have null
+    void TestSquareAt() {
+        BasicSquare[][] grid = new BasicSquare[1][1];
+        Board board = new Board(grid);
+        assertThat(board.squareAt(0, 0)).isNull();
+    }
 }
