@@ -6,15 +6,15 @@ import static org.mockito.Mockito.mock;
 /**
 */
 public class BoardTest {
-    int MAXWIDTH = 1;
-    int MAXHEIGHT = 1;
+    int maxWidth = 1;
+    int maxHeight = 1;
     /**
     */
     @Test // board has correct width
     void testWidth() {
         BasicSquare[][] grid = {{mock(BasicSquare.class)}};
         Board board = new Board(grid);
-        assertThat(board.getWidth()).isEqualTo(MAXWIDTH);
+        assertThat(board.getWidth()).isEqualTo(maxWidth);
     }
     /**
     */
@@ -22,7 +22,7 @@ public class BoardTest {
     void testHeight() {
         BasicSquare[][] grid = {{mock(BasicSquare.class)}};
         Board board = new Board(grid);
-        assertThat(board.getHeight()).isEqualTo(MAXHEIGHT);
+        assertThat(board.getHeight()).isEqualTo(maxHeight);
     }
     /**
     */    
