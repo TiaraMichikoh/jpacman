@@ -6,28 +6,28 @@ import static org.mockito.Mockito.mock;
 /**
 */
 public class BoardTest {
-    int MAX_WIDTH = 1;
-    int MAX_HEIGHT = 1;
+    int MAXWIDTH = 1;
+    int MAXHEIGHT = 1;
     /**
     */
     @Test // board has correct width
-    void TestWidth() {
+    void testWidth() {
         BasicSquare[][] grid = {{mock(BasicSquare.class)}};
         Board board = new Board(grid);
-        assertThat(board.getWidth()).isEqualTo(MAX_WIDTH);
+        assertThat(board.getWidth()).isEqualTo(MAXWIDTH);
     }
     /**
     */
     @Test //Board has correct height
-    void TestHeight() {
+    void testHeight() {
         BasicSquare[][] grid = {{mock(BasicSquare.class)}};
         Board board = new Board(grid);
-        assertThat(board.getHeight()).isEqualTo(MAX_HEIGHT);
+        assertThat(board.getHeight()).isEqualTo(MAXHEIGHT);
     }
     /**
     */    
     @Test //Square in board have null
-    void TestSquareAt() {
+    void testSquareAt() {
         BasicSquare[][] grid = new BasicSquare[1][1];
         Board board = new Board(grid);
         assertThat(board.squareAt(0, 0)).isNull();
