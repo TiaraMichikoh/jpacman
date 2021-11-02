@@ -3,24 +3,29 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
+/**
+*/
 public class BoardTest {
     int MAX_WIDTH = 1;
     int MAX_HEIGHT = 1;
-
+    /**
+    */
     @Test // board has correct width
     void TestWidth() {
         BasicSquare[][] grid = {{mock(BasicSquare.class)}};
         Board board = new Board(grid);
         assertThat(board.getWidth()).isEqualTo(MAX_WIDTH);
     }
-
+    /**
+    */
     @Test //Board has correct height
     void TestHeight() {
         BasicSquare[][] grid = {{mock(BasicSquare.class)}};
         Board board = new Board(grid);
         assertThat(board.getHeight()).isEqualTo(MAX_HEIGHT);
     }
-    
+    /**
+    */    
     @Test //Square in board have null
     void TestSquareAt() {
         BasicSquare[][] grid = new BasicSquare[1][1];
