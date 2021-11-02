@@ -6,8 +6,8 @@ import static org.mockito.Mockito.mock;
 /**
 */
 public class BoardTest {
-    int maxWidth = 1;
-    int maxHeight = 1;
+    private int maxWidth = 1;
+    private int maxHeight = 1;
     /**
     */
     @Test // board has correct width
