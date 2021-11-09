@@ -41,9 +41,9 @@ public class MapParserTest {
         map.add("############");
         mapParser.parseMap(map);
         Mockito.verify(levelFactory, Mockito.times(1)).createGhost();
-        int groundTimes = 10;
-        int wallTimes = 26;
-        Mockito.verify(boardFactory, Mockito.atLeast(groundTimes)).createGround();
+        int groundTimes = 9+1;
+        int wallTimes = 25+1;
+        Mockito.verify(boardFactory, Mockito.times(groundTimes)).createGround();
         Mockito.verify(boardFactory, Mockito.atLeast(wallTimes)).createWall();
     }
 }
