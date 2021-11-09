@@ -42,7 +42,7 @@ public class MapParserTest {
         mapParser.parseMap(map);
         Mockito.verify(levelFactory, Mockito.times(1)).createGhost();
         int groundTimes = 2 + 2 + 2 + 2 + 2; // magic number 10
-        int wallTimes = (2 * 2 * 3 * 2) + 2; // magic number 26
+        int wallTimes = (2 * 2 * 2 * 2) + (2 * 2 * 2) + 2; // magic number 26
         Mockito.verify(boardFactory, Mockito.times(groundTimes)).createGround();
         Mockito.verify(boardFactory, Mockito.times(wallTimes)).createWall();
     }
