@@ -2,8 +2,6 @@ package nl.tudelft.jpacman.level;
 
 import nl.tudelft.jpacman.PacmanConfigurationException;
 import nl.tudelft.jpacman.board.BoardFactory;
-import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.npc.ghost.Blinky;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,8 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doThrow;
 
 /**
  * This is a test class for MapParser.
@@ -30,8 +26,6 @@ public class MapParserTest {
     private LevelFactory levelFactory;
     @Mock
     private Blinky blinky;
-    private Blinky pinky;
-    private Object Exception;
 
     /**
      * Test for the parseMap method (good map).
@@ -60,7 +54,8 @@ public class MapParserTest {
      */
     @Test
     public void testParseMapWrong1() {
-        PacmanConfigurationException thrown = Assertions.assertThrows(PacmanConfigurationException.class, () -> {
+        PacmanConfigurationException thrown = 
+                Assertions.assertThrows(PacmanConfigurationException.class, () -> {
             MockitoAnnotations.initMocks(this);
             assertNotNull(boardFactory);
             assertNotNull(levelFactory);
