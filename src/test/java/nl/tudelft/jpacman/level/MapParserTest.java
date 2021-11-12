@@ -1,7 +1,11 @@
 package nl.tudelft.jpacman.level;
 
+import nl.tudelft.jpacman.PacmanConfigurationException;
 import nl.tudelft.jpacman.board.BoardFactory;
+import nl.tudelft.jpacman.board.Square;
+import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.npc.ghost.Blinky;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -12,6 +16,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doThrow;
 
 /**
  * This is a test class for MapParser.
@@ -24,6 +30,8 @@ public class MapParserTest {
     private LevelFactory levelFactory;
     @Mock
     private Blinky blinky;
+    private Blinky pinky;
+    private Object Exception;
 
     /**
      * Test for the parseMap method (good map).
@@ -41,9 +49,32 @@ public class MapParserTest {
         map.add("############");
         mapParser.parseMap(map);
         Mockito.verify(levelFactory, Mockito.times(1)).createGhost();
-        int groundTimes = 2 + 2 + 2 + 2 + 2; // magic number 10
-        int wallTimes = (2 * 2 * 2 * 2) + (2 * 2 * 2) + 2; // magic number 26
+        int groundTimes = 2 + 2 + 2 + 2 + 2; // P and Space + 1 -> magic number 10
+        int wallTimes = (2 * 2 * 2 * 2) + (2 * 2 * 2) + 2; // # -> magic number 26
         Mockito.verify(boardFactory, Mockito.times(groundTimes)).createGround();
         Mockito.verify(boardFactory, Mockito.times(wallTimes)).createWall();
     }
+
+    /**
+     * Test for the parseMap method (bad map).
+     */
+    @Test
+    public void testParseMapWrong1() {
+        PacmanConfigurationException thrown = Assertions.assertThrows(PacmanConfigurationException.class, () -> {
+            MockitoAnnotations.initMocks(this);
+            assertNotNull(boardFactory);
+            assertNotNull(levelFactory);
+            MapParser mapParser = new MapParser(levelFactory, boardFactory);
+            ArrayList<String> map = new ArrayList<>();
+            map.add("############");
+            map.add("#P   P #  G#");
+            map.add("#######X####");
+            mapParser.parseMap(map);
+            Mockito.verify(levelFactory, Mockito.times(1)).createGhost();
+            int groundTimes = 2 + 2 + 2 + 2 + 1; // P and Space + 1 -> magic number 9
+            int wallTimes = (2 * 2 * 2 * 2) + (2 * 2 * 2) + 1; // # -> magic number 25
+            Mockito.verify(boardFactory, Mockito.times(groundTimes)).createGround();
+            Mockito.verify(boardFactory, Mockito.times(wallTimes)).createWall();
+        });
+        Assertions.assertEquals("Invalid character at 7,2: X", thrown.getMessage()); }
 }
