@@ -69,6 +69,6 @@ public class MapParserTest {
             int wallTimes = (2 * 2 * 2 * 2) + (2 * 2 * 2) + 1; // # -> magic number 25
             Mockito.verify(boardFactory, Mockito.times(groundTimes)).createGround();
             Mockito.verify(boardFactory, Mockito.times(wallTimes)).createWall();
-        });
+        }); 
         Assertions.assertEquals("Invalid character at 7,2: X", thrown.getMessage()); }
 }
